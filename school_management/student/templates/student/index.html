@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% block title %}Student List{% endblock %}
+{% block content %}
+<div class="container my-4">
+    <h1 class="py-3 text-center">All Student List</h1>
+    <div class="row">
+        {% for student in students %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="{{ student.photo.url }}" class="card-img-top" alt="{{ student.name }}" style="height: 200px; object-fit: cover;" >
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ student.name }}</h5>
+                    <p class="card-text mb-1">{{ student.email }}</p>
+                    <p class="card-text">{{ student.phone }}</p>
+                    <a href="{% url 'update_student' student.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
